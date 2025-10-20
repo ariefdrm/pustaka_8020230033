@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('nim');
-            $table->string('no_hp');
-            $table->string('alamat');
-            $table->timestamps();
+            $table->string('nama'); // nama
+            $table->string('nim'); // nim
+            $table->string('no_hp'); // no hp
+            $table->string('alamat'); // alamat
+            // secara default timestamps pada laravel, akan membuat "created_at" and "updated_at" secara otomatis
+            $table->timestamps(); // "created_at" dan "updated_at"
         });
     }
 
