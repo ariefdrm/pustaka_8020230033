@@ -1,5 +1,8 @@
 ## Repo ini ditujukan untuk tugas pemrogramman web 2
 
+Project menampilkan list data "Student" atau "Mahasiswa" menggunakan laravel.
+Dengan menggunakan laravel sebagai backend dan VueJs untuk frontend. 
+
 ## setup project
 
 cloning project
@@ -12,21 +15,20 @@ rename env file
 cp .env.example .env
 ```
 
-installing packages
+installing packages and build frontend
 ``` 
 composer install 
 npm install && npm run build 
-
 ``` 
-
-setup migration database 
-```
-php artisan migrate
-```
 
 generate key 
 ```
 php artisan key:generate
+```
+
+setup migration database 
+```
+php artisan migrate
 ```
 
 run the project 
