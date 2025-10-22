@@ -64,6 +64,8 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         //
+        $result = $student->all();
+        return response()->json($result);
     }
 
     /**

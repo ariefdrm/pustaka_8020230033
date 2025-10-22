@@ -3,6 +3,13 @@
 Project menampilkan list data "Student" atau "Mahasiswa" menggunakan laravel.
 Dengan menggunakan laravel sebagai backend dan VueJs untuk frontend. 
 
+Tech Stacks yang saya gunakan dalam project ini : 
+- VueJs (frontend)
+- Laravel (backend)
+- Sqlite (database)
+- Tailwindcss
+- Shadcn Vue
+
 ## setup project
 
 cloning project

@@ -16,7 +16,9 @@ Route::get("student", function () {
     return Inertia::render("Student");
 })->middleware(['auth', 'verified'])->name('student');
 
-Route::resource('api/student', StudentController::class);
+route::resource('api/student', StudentController::class);
+Route::get('api/students', [StudentController::class, "show"])->middleware(['auth', 'verified'])->name('students');
+// Route::get('api/students', StudentController::class);
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
