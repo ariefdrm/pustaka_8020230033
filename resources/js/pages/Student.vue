@@ -81,6 +81,18 @@ const loadPage = async (p = page.value, name = search.value) => {
     }
 };
 
+function formatDate(isoString: string) {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
 onMounted(() => loadPage());
 
 // when page changes via pagination controls, reload
@@ -161,8 +173,8 @@ watch(
                     <TableCell>{{ value.nim }}</TableCell>
                     <TableCell>{{ value.no_hp }}</TableCell>
                     <TableCell> {{ value.alamat }} </TableCell>
-                    <TableCell>{{ value.created_at }}</TableCell>
-                    <TableCell>{{ value.updated_at }}</TableCell>
+                    <TableCell>{{ formatDate(value.created_at) }}</TableCell>
+                    <TableCell>{{ formatDate(value.updated_at) }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
