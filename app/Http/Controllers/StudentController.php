@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -23,19 +23,16 @@ class StudentController extends Controller
             $query->where('nama', 'like', '%' . $searchTerm . '%');
 
             // Keep ordering consistent
-            $query->orderBy('id', 'asc');
+            $query->orderBy('id', 'desc');
 
             $students = $query->paginate(10)->appends(request()->query());
             return response()->json($students);
         }
 
         // Apply sorting (latest by created_at, then ascending by id)
-        // You might want to pick one sorting method; 'latest()' sorts by created_at DESC.
-        // If you want to sort by 'id' ASC as primary:
-        $query->orderBy('id', "asc");
+        $query->orderBy('id', "desc");
 
         // Get the paginated results and append the query parameters
-        // The 'appends()' method is crucial for passing the search term to the frontend
         $students = $query->paginate(10)->appends(request()->query());
 
         // Return the JSON response
@@ -53,9 +50,23 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStudentRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Validate the request
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nim' => 'required|string|max:50',
+            'no_hp' => 'required|string|max:20',
+            'alamat' => 'required|string|max:255',
+        ]);
+
+        $student = Student::create($validated);
+
+        // Return response (adjust depending on your front-end setup)
+        return response()->json([
+            'message' => 'Student created successfully',
+            'data' => $student
+        ], 201);
     }
 
     /**
@@ -90,5 +101,9 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+        $student->delete();
+        return response()->json([
+            'message' => 'Student deleted successfully'
+        ], 200);
     }
 }

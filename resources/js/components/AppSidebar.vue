@@ -11,6 +11,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard, student } from '@/routes';
+import page2 from '@/routes/page2';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { LayoutGrid, User } from 'lucide-vue-next';
@@ -25,6 +26,11 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Student',
         href: student(),
+        icon: User,
+    },
+    {
+        title: 'test',
+        href: page2.index(),
         icon: User,
     },
 ];

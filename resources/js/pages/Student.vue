@@ -23,6 +23,8 @@ import { BreadcrumbItem } from '@/types';
 import axios from 'axios';
 import { Search } from 'lucide-vue-next';
 import { onMounted, ref, watch } from 'vue';
+// import {router} from "@inertiajs/vue3"
+import api from '@/lib/axios';
 
 const breadCrump: BreadcrumbItem[] = [
     {
@@ -93,6 +95,16 @@ function formatDate(isoString: string) {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
+function handleDelete(studentId: number) {
+    api.delete(`/student/${studentId}`)
+        .then(() => {
+            loadPage();
+        })
+        .catch((err) => {
+            console.error('Failed to delete student:', err);
+        });
+}
+
 onMounted(() => loadPage());
 
 // when page changes via pagination controls, reload
@@ -117,19 +129,28 @@ watch(
     <Head title="student-page"></Head>
 
     <AppLayout :breadcrumbs="breadCrump">
-        <div class="relative m-5 w-full max-w-sm items-center">
-            <Input
-                id="search"
-                v-model="search"
-                type="text"
-                placeholder="Search by name..."
-                class="pl-10"
-            />
-            <span
-                class="absolute inset-y-0 start-0 flex items-center justify-center px-2"
-            >
-                <Search class="size-6 text-muted-foreground" />
-            </span>
+        <div class="flex justify-between">
+            <div>
+ <div class="relative m-5 w-full max-w-sm items-center">
+                <Input
+                    id="search"
+                    v-model="search"
+                    type="text"
+                    placeholder="Search by name..."
+                    class="pl-10"
+                />
+                <span
+                    class="absolute inset-y-0 start-0 flex items-center justify-center px-2"
+                >
+                    <Search class="size-6 text-muted-foreground" />
+                </span>
+            </div>
+        </div>
+
+
+            <button class="px-2 py-1 m-5 rounded bg-blue-500 hover:bg-blue-600 text-white">
+                <a href="/student/add">Tambah data</a>
+            </button>
         </div>
 
         <Table>
@@ -142,6 +163,7 @@ watch(
                     <TableHead> Alamat </TableHead>
                     <TableHead> Created At </TableHead>
                     <TableHead> Updated At </TableHead>
+                       <TableHead>  </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -175,6 +197,13 @@ watch(
                     <TableCell> {{ value.alamat }} </TableCell>
                     <TableCell>{{ formatDate(value.created_at) }}</TableCell>
                     <TableCell>{{ formatDate(value.updated_at) }}</TableCell>
+                    <TableCell class="flex gap-2">
+                        <button class="px-2 py-1 bg-blue-500 rounded-sm">Edit</button>
+
+                            <button @click="handleDelete(value.id)" class="px-2 py-1 bg-red-500 rounded-sm active:bg-red-400">hapus</button>
+
+
+                    </TableCell>
                 </TableRow>
             </TableBody>
         </Table>

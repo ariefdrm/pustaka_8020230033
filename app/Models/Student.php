@@ -9,4 +9,15 @@ class Student extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     * Required for Student::create($validated) to work without
+     * throwing a MassAssignmentException.
+     */
+    protected $fillable = [
+        'nama',
+        'nim',
+        'no_hp',
+        'alamat',
+    ];
 }
