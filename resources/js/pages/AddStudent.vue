@@ -9,8 +9,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import api from '@/lib/axios';
+import { router } from '@inertiajs/vue3';
 import { reactive } from 'vue';
-import {router} from "@inertiajs/vue3"
 
 type StudentForm = {
     nama: string;
@@ -34,27 +34,35 @@ function onSubmit(event: Event) {
         nim: state.nim,
         no_hp: state.no_hp,
         alamat: state.alamat,
-    }).then(response => {
-        console.log('Student added successfully:', response.data);
-        // window.history.back()
-        router.visit('/student');
-    }).catch(error => {
-        console.error('Error adding student:', error);
-    });
+    })
+        .then((response) => {
+            console.log('Student added successfully:', response.data);
+
+            setTimeout(() => {
+                router.visit('/student');
+            }, 2000);
+        })
+        .catch((error) => {
+            console.error('Error adding student:', error);
+        });
 }
 </script>
 
 <template>
     <!-- Outer container: Full-screen, fixed, and flex-centered -->
-    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div
+        class="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-black"
+    >
         <!-- Inner modal: Remove 'fixed', keep size and styling -->
-        <div class="h-[70%] w-[50%] rounded-md border bg-white p-5 dark:bg-black">
+        <div
+            class="h-[70%] w-[50%] rounded-md border bg-white p-5 dark:bg-black"
+        >
             <div class="mb-4">
                 <h1 class="text-3xl font-bold dark:text-white">Tambah Data</h1>
             </div>
 
             <form class="space-y-6" @submit="onSubmit">
-              <FormField v-slot="{ componentField }" name="nam">
+                <FormField v-slot="{ componentField }" name="nam">
                     <FormItem v-auto-animate>
                         <FormLabel>Nama : </FormLabel>
                         <FormControl>
@@ -68,7 +76,7 @@ function onSubmit(event: Event) {
                         <FormMessage />
                     </FormItem>
                 </FormField>
-                  <FormField v-slot="{ componentField }" name="nim">
+                <FormField v-slot="{ componentField }" name="nim">
                     <FormItem v-auto-animate>
                         <FormLabel>Nim : </FormLabel>
                         <FormControl>
@@ -82,7 +90,7 @@ function onSubmit(event: Event) {
                         <FormMessage />
                     </FormItem>
                 </FormField>
-                  <FormField v-slot="{ componentField }" name="no_hp">
+                <FormField v-slot="{ componentField }" name="no_hp">
                     <FormItem v-auto-animate>
                         <FormLabel>No Hp : </FormLabel>
                         <FormControl>
@@ -96,7 +104,7 @@ function onSubmit(event: Event) {
                         <FormMessage />
                     </FormItem>
                 </FormField>
-                  <FormField v-slot="{ componentField }" name="alamat">
+                <FormField v-slot="{ componentField }" name="alamat">
                     <FormItem v-auto-animate>
                         <FormLabel>Alamat : </FormLabel>
                         <FormControl>

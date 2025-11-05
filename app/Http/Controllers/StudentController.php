@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -74,25 +75,41 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
-        $result = $student->all();
-        return response()->json($result);
+        // Return the single student resource requested by route-model binding
+        return response()->json($student);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
         //
+
+        $student = Student::query()->findOrFail($id); // find the student by id via request parameters
+
+        return Inertia('EditStudent', ['data' => $student]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStudentRequest $request, Student $student)
+    public function update(Request $request, Student $student)
     {
-        //
+        // Use validated data from the form request
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nim' => 'required|string|max:50',
+            'no_hp' => 'required|string|max:20',
+            'alamat' => 'required|string|max:255',
+        ]);
+
+        $student->update($validated);
+
+        return response()->json([
+            'message' => 'Student updated successfully',
+            'data' => $student,
+        ], 200);
     }
 
     /**
