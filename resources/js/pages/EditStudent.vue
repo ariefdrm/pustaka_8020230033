@@ -7,16 +7,16 @@ const props = defineProps<{ message: string; data: Student }>();
 
 const form = useForm(props.data);
 
-async function onSubmit() {
+async function onSubmit(e: Event) {
+    e.preventDefault();
     const id = props.data.id;
 
     try {
-        const response = await api.put(`student/${id}`, form.data());
+        await api.put(`/student/${id}`, form);
 
-        console.log('Student updated successfully:', response.data);
         router.visit('/student');
     } catch (error) {
-        console.error('Error updating student:', error);
+        console.error(error);
     }
 }
 </script>
@@ -35,18 +35,32 @@ async function onSubmit() {
 
             <form @submit="onSubmit" class="flex flex-col space-y-6">
                 <label for="nama">Nama : </label>
-                <input type="text" v-model="form.nama" />
+                <input
+                    type="text"
+                    class="rounded-md border px-2 py-2"
+                    v-model="form.nama"
+                />
                 <label for="nim">Nim : </label>
-                <input type="text" v-model="form.nim" />
+                <input
+                    type="text"
+                    class="rounded-md border px-2 py-2"
+                    v-model="form.nim"
+                />
                 <label for="no_hp">No Hp : </label>
-                <input type="text" v-model="form.no_hp" />
+                <input
+                    type="text"
+                    class="rounded-md border px-2 py-2"
+                    v-model="form.no_hp"
+                />
                 <label for="alamat">Alamat : </label>
-                <input type="text" v-model="form.alamat" />
+                <input
+                    type="text"
+                    class="rounded-md border px-2 py-2"
+                    v-model="form.alamat"
+                />
 
-                <!-- <input type="hidden" name="_method" value="PATCH" /> -->
-                <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}" /> -->
                 <button
-                    class="rounded-md bg-white px-2 py-1 text-sm text-black hover:bg-gray-100"
+                    class="max-w-fit rounded-md bg-white px-2 py-1 text-sm text-black hover:bg-gray-100"
                     type="submit"
                 >
                     Submit
