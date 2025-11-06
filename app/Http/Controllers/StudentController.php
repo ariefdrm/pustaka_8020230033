@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -82,13 +80,9 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit()
     {
         //
-
-        $student = Student::query()->findOrFail($id); // find the student by id via request parameters
-
-        return Inertia('EditStudent', ['data' => $student]);
     }
 
     /**

@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\BooksController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestController;
+use App\Models\Books;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -13,6 +16,10 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+/*
+ * Route (Student)
+ * Menampilkan halaman student, menggunakan inertia untuk me-render vue component
+*/
 Route::get("student", function () {
     return Inertia::render("Student");
 })->middleware(['auth', 'verified'])->name('student');
@@ -21,18 +28,33 @@ Route::get('/student/add', function () {
     return Inertia::render('AddStudent');
 })->middleware(['auth', 'verified'])->name('student.add');
 
-// Route::get('/student/{id}/edit', function ($id) {
-//     $student = Student::query()->findOrFail($id); // find the student by id via request parameters
-//
-//     // sending data to the view and render edit page "EditStudent.vue"
-//     return Inertia::render('EditStudent', [
-//         'data' => $student
-//     ]);
-// })->middleware(['auth', 'verified'])->name('student.update');
+Route::get('/student/edit/{id}', function ($id) {
+    $student = Student::query()->findOrFail($id); // find the student by id via request parameters
 
+    return Inertia('EditStudent', ['data' => $student]);
+});
+
+/*
+ * Route (Books)
+*/
+Route::get('books', function () {
+    return Inertia::render('Books');
+})->middleware(['auth', 'verified'])->name('books');;
+
+Route::get('books/add', function () {
+    return Inertia::render('AddBooks');
+})->middleware(['auth', 'verified'])->name('books.add');
+
+Route::get('books/edit/{id}', function ($id) {
+    $books = Books::query()->findOrFail($id);
+
+    return Inertia('EditBooks', ['data' => $books]);
+});
+
+
+// Route API backend untuk handling data dengan database
 Route::resource('api/student', StudentController::class);
-// Route::patch('api/student/{id}', [StudentController::class, "update"])->middleware(['auth', 'verified'])->name('student.update');
-Route::get('api/students', [StudentController::class, "show"]);
+Route::resource('api/books', BooksController::class);
 
 Route::resource('page2', TestController::class);
 

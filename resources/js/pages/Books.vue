@@ -17,34 +17,33 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { ResponseApiStudent } from '@/lib/response';
-import { student } from '@/routes';
+import { books } from '@/routes';
 import { BreadcrumbItem } from '@/types';
-import axios from 'axios';
 import { Search } from 'lucide-vue-next';
 import { onMounted, ref, watch } from 'vue';
 // import {router} from "@inertiajs/vue3"
 import api from '@/lib/axios';
+import { ResponseApiBooks } from '@/types/globals';
 
 const breadCrump: BreadcrumbItem[] = [
     {
-        title: 'student',
-        href: student.url(),
+        title: 'books',
+        href: books.url(),
     },
 ];
 
-async function fetchStudentData(page = 1, per_page = 10, name = '') {
+async function fetchBooksData(page = 1, per_page = 10, name = '') {
     // Build query params so name is optional and properly encoded
     const params = new URLSearchParams();
     params.set('page', String(page));
     params.set('per_page', String(per_page));
     if (name) params.set('name', name);
 
-    const url = `http://localhost:8000/api/student?${params.toString()}`;
-    return axios.get<ResponseApiStudent>(url).then((res) => res.data);
+    const url = `http://localhost:8000/api/books?${params.toString()}`;
+    return api.get<ResponseApiBooks>(url).then((res) => res.data);
 }
 
-const data = ref<ResponseApiStudent>({
+const data = ref<ResponseApiBooks>({
     current_page: 1,
     data: [],
     first_page_url: '',
@@ -53,12 +52,12 @@ const data = ref<ResponseApiStudent>({
     last_page_url: '',
     links: [],
     next_page_url: null as any,
-    path: '/api/student',
+    path: '/api/books',
     per_page: 10,
     prev_page_url: null as any,
     to: 0,
     total: 0,
-} as unknown as ResponseApiStudent);
+} as unknown as ResponseApiBooks);
 
 const loading = ref(false);
 const error = ref('');
@@ -73,7 +72,7 @@ const loadPage = async (p = page.value, name = search.value) => {
     loading.value = true;
     error.value = '';
     try {
-        const res = await fetchStudentData(p, perPage.value, name);
+        const res = await fetchBooksData(p, perPage.value, name);
         data.value = res;
         page.value = res.current_page || p;
     } catch (err: any) {
@@ -96,16 +95,16 @@ function formatDate(isoString: string) {
 }
 
 function formatLinkEdit(id: number): string {
-    return `student/edit/${id}`;
+    return `books/edit/${id}`;
 }
 
-function handleDelete(studentId: number) {
-    api.delete(`/student/${studentId}`)
+function handleDelete(id: number) {
+    api.delete(`/books/${id}`)
         .then(() => {
             loadPage();
         })
         .catch((err) => {
-            console.error('Failed to delete student:', err);
+            console.error('Failed to delete book:', err);
         });
 }
 
@@ -154,7 +153,7 @@ watch(
             <button
                 class="m-5 rounded bg-blue-500 px-2 py-1 text-white hover:bg-blue-600"
             >
-                <a href="/student/add">Tambah data</a>
+                <a href="/books/add">Tambah data</a>
             </button>
         </div>
 
@@ -162,10 +161,11 @@ watch(
             <TableHeader>
                 <TableRow>
                     <TableHead> No </TableHead>
-                    <TableHead class="w-[200px]"> Nama </TableHead>
-                    <TableHead>Nim</TableHead>
-                    <TableHead>No Hp</TableHead>
-                    <TableHead> Alamat </TableHead>
+                    <TableHead class="w-[200px]"> Title </TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead>Author</TableHead>
+                    <TableHead> Publisher </TableHead>
+                    <TableHead> Description </TableHead>
                     <TableHead> Created At </TableHead>
                     <TableHead> Updated At </TableHead>
                     <TableHead> </TableHead>
@@ -196,10 +196,12 @@ watch(
                     :key="value.id"
                 >
                     <TableCell>{{ (data.from || 0) + index }}</TableCell>
-                    <TableCell class="font-medium">{{ value.nama }}</TableCell>
-                    <TableCell>{{ value.nim }}</TableCell>
-                    <TableCell>{{ value.no_hp }}</TableCell>
-                    <TableCell> {{ value.alamat }} </TableCell>
+                    <!-- <TableCell class="font-medium">{{ value.id }}</TableCell> -->
+                    <TableCell class="font-medium">{{ value.title }}</TableCell>
+                    <TableCell>{{ value.category }}</TableCell>
+                    <TableCell>{{ value.author }}</TableCell>
+                    <TableCell> {{ value.publisher }} </TableCell>
+                    <TableCell> {{ value.description }} </TableCell>
                     <TableCell>{{ formatDate(value.created_at) }}</TableCell>
                     <TableCell>{{ formatDate(value.updated_at) }}</TableCell>
                     <TableCell class="flex gap-2">

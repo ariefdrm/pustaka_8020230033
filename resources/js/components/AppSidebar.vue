@@ -10,11 +10,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard, student } from '@/routes';
+import { books, dashboard, student } from '@/routes';
 import page2 from '@/routes/page2';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { LayoutGrid, User } from 'lucide-vue-next';
+import { FlaskConical, LayoutGrid, Library, User } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -29,9 +29,14 @@ const mainNavItems: NavItem[] = [
         icon: User,
     },
     {
+        title: 'Books',
+        href: books(),
+        icon: Library,
+    },
+    {
         title: 'test',
         href: page2.index(),
-        icon: User,
+        icon: FlaskConical,
     },
 ];
 

@@ -37,7 +37,7 @@ class BooksPolicy
      */
     public function update(User $user, Books $books): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -45,7 +45,9 @@ class BooksPolicy
      */
     public function delete(User $user, Books $books): bool
     {
-        return false;
+        // Allow delete for now. Update this to implement role-based checks
+        // (e.g. return $user->is_admin) if you need stricter authorization.
+        return true;
     }
 
     /**
@@ -61,6 +63,6 @@ class BooksPolicy
      */
     public function forceDelete(User $user, Books $books): bool
     {
-        return false;
+        return true;
     }
 }

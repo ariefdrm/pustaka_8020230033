@@ -41,12 +41,39 @@ export interface ResponseApiStudent {
     total: number;
 }
 
+export interface ResponseApiBooks {
+    current_page: number;
+    data: Books[];
+    first_page_url: string;
+    from: number;
+    last_page: number;
+    last_page_url: string;
+    links: Link[];
+    next_page_url: string;
+    path: string;
+    per_page: number;
+    prev_page_url: any;
+    to: number;
+    total: number;
+}
+
 export interface Student {
     id: number;
     nama: string;
     nim: string;
     no_hp: string;
     alamat: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Books {
+    id: number;
+    title: string;
+    category: string;
+    author: string;
+    publisher: string;
+    description: string;
     created_at: string;
     updated_at: string;
 }

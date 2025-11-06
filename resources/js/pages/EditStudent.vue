@@ -12,7 +12,7 @@ async function onSubmit(e: Event) {
     const id = props.data.id;
 
     try {
-        await api.put(`/student/${id}`, form);
+        await api.patch(`/student/${id}`, form);
 
         router.visit('/student');
     } catch (error) {
