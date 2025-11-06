@@ -23,10 +23,10 @@ async function onSubmit(e: Event) {
 
 <template>
     <div
-        class="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-black"
+        class="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-white dark:bg-black"
     >
         <div
-            class="h-[70%] w-[50%] rounded-md border bg-white p-5 dark:bg-black"
+            class="h-[55%] w-[50%] rounded-md border bg-white p-5 dark:bg-black"
         >
             <div class="mb-4 flex justify-between">
                 <h1 class="text-3xl font-bold dark:text-white">Edit Data</h1>
@@ -34,33 +34,41 @@ async function onSubmit(e: Event) {
             </div>
 
             <form @submit="onSubmit" class="flex flex-col space-y-6">
-                <label for="nama">Nama : </label>
-                <input
-                    type="text"
-                    class="rounded-md border px-2 py-2"
-                    v-model="form.nama"
-                />
-                <label for="nim">Nim : </label>
-                <input
-                    type="text"
-                    class="rounded-md border px-2 py-2"
-                    v-model="form.nim"
-                />
-                <label for="no_hp">No Hp : </label>
-                <input
-                    type="text"
-                    class="rounded-md border px-2 py-2"
-                    v-model="form.no_hp"
-                />
-                <label for="alamat">Alamat : </label>
-                <input
-                    type="text"
-                    class="rounded-md border px-2 py-2"
-                    v-model="form.alamat"
-                />
+                <div>
+                    <label for="nama">Nama : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="form.nama"
+                    />
+                </div>
+                <div>
+                    <label for="nim">Nim : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="form.nim"
+                    />
+                </div>
+                <div>
+                    <label for="no_hp">No Hp : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="form.no_hp"
+                    />
+                </div>
+                <div>
+                    <label for="alamat">Alamat : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="form.alamat"
+                    />
+                </div>
 
                 <button
-                    class="max-w-fit rounded-md bg-white px-2 py-1 text-sm text-black hover:bg-gray-100"
+                    class="max-w-fit rounded-md bg-slate-900 px-2 py-1 text-sm text-white active:bg-slate-600 dark:bg-white dark:text-black"
                     type="submit"
                 >
                     Submit

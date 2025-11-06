@@ -203,12 +203,14 @@ watch(
                     <TableCell>{{ formatDate(value.created_at) }}</TableCell>
                     <TableCell>{{ formatDate(value.updated_at) }}</TableCell>
                     <TableCell class="flex gap-2">
-                        <button class="rounded-sm bg-blue-500 px-2 py-1">
+                        <button
+                            class="rounded-sm bg-blue-500 px-2 py-1 text-white active:bg-blue-400"
+                        >
                             <a :href="formatLinkEdit(value.id)">Edit</a>
                         </button>
                         <button
                             @click="handleDelete(value.id)"
-                            class="rounded-sm bg-red-500 px-2 py-1 active:bg-red-400"
+                            class="rounded-sm bg-red-500 px-2 py-1 text-white active:bg-red-400"
                         >
                             hapus
                         </button>

@@ -1,13 +1,4 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button';
-import {
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import api from '@/lib/axios';
 import { router } from '@inertiajs/vue3';
 import { reactive } from 'vue';
@@ -49,76 +40,57 @@ function onSubmit(event: Event) {
 </script>
 
 <template>
-    <!-- Outer container: Full-screen, fixed, and flex-centered -->
     <div
-        class="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-black"
+        class="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-white dark:bg-black"
     >
-        <!-- Inner modal: Remove 'fixed', keep size and styling -->
         <div
-            class="h-[70%] w-[50%] rounded-md border bg-white p-5 dark:bg-black"
+            class="h-[55%] w-[50%] rounded-md border bg-white p-5 dark:bg-black"
         >
-            <div class="mb-4">
+            <div class="mb-4 flex justify-between">
                 <h1 class="text-3xl font-bold dark:text-white">Tambah Data</h1>
+                <a href="/student" class="text-lg">X</a>
             </div>
 
-            <form class="space-y-6" @submit="onSubmit">
-                <FormField v-slot="{ componentField }" name="nam">
-                    <FormItem v-auto-animate>
-                        <FormLabel>Nama : </FormLabel>
-                        <FormControl>
-                            <Input
-                                type="text"
-                                placeholder="Nama"
-                                v-bind="componentField"
-                                v-model="state.nama"
-                            />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                </FormField>
-                <FormField v-slot="{ componentField }" name="nim">
-                    <FormItem v-auto-animate>
-                        <FormLabel>Nim : </FormLabel>
-                        <FormControl>
-                            <Input
-                                type="text"
-                                placeholder="Nim..."
-                                v-bind="componentField"
-                                v-model="state.nim"
-                            />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                </FormField>
-                <FormField v-slot="{ componentField }" name="no_hp">
-                    <FormItem v-auto-animate>
-                        <FormLabel>No Hp : </FormLabel>
-                        <FormControl>
-                            <Input
-                                type="text"
-                                placeholder="No Hp"
-                                v-bind="componentField"
-                                v-model="state.no_hp"
-                            />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                </FormField>
-                <FormField v-slot="{ componentField }" name="alamat">
-                    <FormItem v-auto-animate>
-                        <FormLabel>Alamat : </FormLabel>
-                        <FormControl>
-                            <Input
-                                type="text"
-                                placeholder="Alamat..."
-                                v-bind="componentField"
-                                v-model="state.alamat"
-                            />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                </FormField>
-                <Button type="submit"> Submit </Button>
+            <form @submit="onSubmit" class="flex flex-col space-y-6">
+                <div>
+                    <label for="nama">Nama : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="state.nama"
+                    />
+                </div>
+                <div>
+                    <label for="nim">Nim : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="state.nim"
+                    />
+                </div>
+                <div>
+                    <label for="no_hp">No Hp : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="state.no_hp"
+                    />
+                </div>
+                <div>
+                    <label for="alamat">Alamat : </label>
+                    <input
+                        type="text"
+                        class="w-full rounded-md border px-2 py-1"
+                        v-model="state.alamat"
+                    />
+                </div>
+
+                <button
+                    class="max-w-fit rounded-md bg-black px-2 py-1 text-sm text-white hover:bg-gray-100 dark:bg-white dark:text-black dark:hover:bg-gray-100"
+                    type="submit"
+                >
+                    Submit
+                </button>
             </form>
         </div>
     </div>

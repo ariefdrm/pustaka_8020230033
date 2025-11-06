@@ -2,14 +2,11 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestController;
-use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome')->middleware(function (Middleware $middleware) {
-        $middleware->validateCsrfTokens(except: ['api/*']);
-    });
+    return Inertia::render('Welcome');
 })->name('home');
 
 Route::get('dashboard', function () {
