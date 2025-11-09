@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateBooksRequest;
 use App\Models\Books;
 use Illuminate\Http\Request;
 
@@ -40,13 +39,6 @@ class BooksController extends Controller
         return response()->json($books);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -79,14 +71,6 @@ class BooksController extends Controller
         //
         $books = Books::query();
         return response()->json($books->all());
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Books $books)
-    {
-        //
     }
 
     /**

@@ -104,8 +104,6 @@ class StudentController extends Controller
             'message' => 'Student updated successfully',
             'data' => $student,
         ], 200);
-
-        // return redirect()->route('student.index')->with('message', 'Student updated successfully.');
     }
 
     /**

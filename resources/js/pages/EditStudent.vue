@@ -29,7 +29,9 @@ async function onSubmit(e: Event) {
             class="h-[55%] w-[50%] rounded-md border bg-white p-5 dark:bg-black"
         >
             <div class="mb-4 flex justify-between">
-                <h1 class="text-3xl font-bold dark:text-white">Edit Data</h1>
+                <h1 class="text-3xl font-bold dark:text-white">
+                    Edit Data : {{ form.nama }}
+                </h1>
                 <a href="/student" class="text-lg">X</a>
             </div>
 

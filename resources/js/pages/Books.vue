@@ -32,12 +32,12 @@ const breadCrump: BreadcrumbItem[] = [
     },
 ];
 
-async function fetchBooksData(page = 1, per_page = 10, name = '') {
+async function fetchBooksData(page = 1, per_page = 10, title = '') {
     // Build query params so name is optional and properly encoded
     const params = new URLSearchParams();
     params.set('page', String(page));
     params.set('per_page', String(per_page));
-    if (name) params.set('name', name);
+    if (title) params.set('title', title);
 
     const url = `http://localhost:8000/api/books?${params.toString()}`;
     return api.get<ResponseApiBooks>(url).then((res) => res.data);

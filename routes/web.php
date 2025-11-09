@@ -53,7 +53,7 @@ Route::get('books/edit/{id}', function ($id) {
 
 
 // Route API backend untuk handling data dengan database
-Route::resource('api/student', StudentController::class);
+Route::resource('api/students', StudentController::class);
 Route::resource('api/books', BooksController::class);
 
 Route::resource('page2', TestController::class);

@@ -17,14 +17,13 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import AppLayout from '@/layouts/AppLayout.vue';
+import api from '@/lib/axios';
 import { ResponseApiStudent } from '@/lib/response';
 import { student } from '@/routes';
 import { BreadcrumbItem } from '@/types';
 import axios from 'axios';
 import { Search } from 'lucide-vue-next';
 import { onMounted, ref, watch } from 'vue';
-// import {router} from "@inertiajs/vue3"
-import api from '@/lib/axios';
 
 const breadCrump: BreadcrumbItem[] = [
     {
@@ -40,7 +39,7 @@ async function fetchStudentData(page = 1, per_page = 10, name = '') {
     params.set('per_page', String(per_page));
     if (name) params.set('name', name);
 
-    const url = `http://localhost:8000/api/student?${params.toString()}`;
+    const url = `http://localhost:8000/api/students?${params.toString()}`;
     return axios.get<ResponseApiStudent>(url).then((res) => res.data);
 }
 
@@ -53,7 +52,7 @@ const data = ref<ResponseApiStudent>({
     last_page_url: '',
     links: [],
     next_page_url: null as any,
-    path: '/api/student',
+    path: '/api/students',
     per_page: 10,
     prev_page_url: null as any,
     to: 0,
@@ -100,7 +99,7 @@ function formatLinkEdit(id: number): string {
 }
 
 function handleDelete(studentId: number) {
-    api.delete(`/student/${studentId}`)
+    api.delete(`/students/${studentId}`)
         .then(() => {
             loadPage();
         })
