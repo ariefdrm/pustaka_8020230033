@@ -10,11 +10,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { books, dashboard, student } from '@/routes';
+import { books, dashboard, person, student } from '@/routes';
 import page2 from '@/routes/page2';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { FlaskConical, LayoutGrid, Library, User } from 'lucide-vue-next';
+import { ContactRound, FlaskConical, LayoutGrid, Library, User } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -32,6 +32,11 @@ const mainNavItems: NavItem[] = [
         title: 'Books',
         href: books(),
         icon: Library,
+    },
+    {
+        title: 'Person',
+        href: person(),
+        icon: ContactRound,
     },
     {
         title: 'test',
@@ -61,7 +66,7 @@ const mainNavItems: NavItem[] = [
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
                         <Link :href="dashboard()">
-                            <AppLogo />
+                        <AppLogo />
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>

@@ -141,7 +141,7 @@ async function onSubmit(e: Event) {
                 <div class="flex justify-end pt-2">
                     <button
                         type="submit"
-                        class="w-full rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 active:bg-slate-600 sm:w-auto dark:bg-white dark:text-black dark:hover:bg-gray-100"
+                        class="w-full cursor-pointer rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 active:bg-slate-600 sm:w-auto dark:bg-white dark:text-black dark:hover:bg-gray-100"
                     >
                         Save Changes
                     </button>

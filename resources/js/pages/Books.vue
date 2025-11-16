@@ -212,7 +212,7 @@ watch(
                         </button>
                         <button
                             @click="handleDelete(value.id)"
-                            class="rounded-sm bg-red-500 px-2 py-1 text-white active:bg-red-400"
+                            class="cursor-pointer rounded-sm bg-red-500 px-2 py-1 text-white active:bg-red-400"
                         >
                             hapus
                         </button>

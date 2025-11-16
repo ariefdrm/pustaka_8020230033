@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestController;
 use App\Models\Books;
@@ -39,7 +40,7 @@ Route::get('/student/edit/{id}', function ($id) {
 */
 Route::get('books', function () {
     return Inertia::render('Books');
-})->middleware(['auth', 'verified'])->name('books');;
+})->middleware(['auth', 'verified'])->name('books');
 
 Route::get('books/add', function () {
     return Inertia::render('AddBooks');
@@ -51,12 +52,18 @@ Route::get('books/edit/{id}', function ($id) {
     return Inertia('EditBooks', ['data' => $books]);
 });
 
+/*
+ *  Route (Person)
+ */
+Route::get('person', function () {
+    return Inertia::render('Person');
+})->middleware(['auth', 'verified'])->name('person');
 
 // Route API backend untuk handling data dengan database
 Route::resource('api/students', StudentController::class);
 Route::resource('api/books', BooksController::class);
-
 Route::resource('page2', TestController::class);
+Route::resource('page3', Controller::class);
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

@@ -149,7 +149,10 @@ function onSubmit(event: Event) {
                 </div>
 
                 <div class="flex justify-end pt-2">
-                    <Button type="submit" class="w-full sm:w-auto">
+                    <Button
+                        type="submit"
+                        class="w-full cursor-pointer sm:w-auto"
+                    >
                         Submit
                     </Button>
                 </div>
