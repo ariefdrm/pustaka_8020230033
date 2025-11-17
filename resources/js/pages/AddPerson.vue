@@ -40,7 +40,7 @@ function onSubmit() {
             <!-- Header -->
             <div class="mb-6 flex items-center justify-between border-b border-gray-200 pb-3 dark:border-gray-700">
                 <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-                    Tambah Student
+                    Tambah Data Person
                 </h1>
                 <a href="/student"
                     class="text-xl font-semibold text-gray-400 transition hover:text-gray-700 dark:hover:text-gray-300">
@@ -64,13 +64,13 @@ function onSubmit() {
 
                 <div>
                     <label for="no_hp" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                    <input id="no_hp" type="text" v-model="state.email" placeholder="e.g. 0935"
+                    <input id="no_hp" type="text" v-model="state.email" placeholder="e.g. testing@mail.com"
                         class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
                 </div>
 
                 <div>
                     <label for="alamat" class="block text-sm font-medium text-gray-700 dark:text-gray-300">No Hp</label>
-                    <input id="publisher" type="text" v-model="state.no_hp" placeholder="e.g. jln. jayakarta"
+                    <input id="publisher" type="text" v-model="state.no_hp" placeholder="e.g. 0966-7777-7328"
                         class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
                 </div>
 
