@@ -9,5 +9,5 @@ const emit = defineEmits(['clicked']);
 
 <template>
     <h1>{{ props.message }}</h1>
-    <button @click="emit('clicked)">click</button>
+    <button @click="emit('clicked')">click</button>
 </template>

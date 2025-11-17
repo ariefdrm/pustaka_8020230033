@@ -34,7 +34,7 @@ Route::get('/student/add', function () {
 Route::get('/student/edit/{id}', function ($id) {
     $student = Student::query()->findOrFail($id); // find the student by id via request parameters
 
-    return Inertia('EditStudent', ['data' => $student]);
+    return Inertia::render('EditStudent', ['data' => $student]);
 });
 
 /*
@@ -51,7 +51,7 @@ Route::get('books/add', function () {
 Route::get('books/edit/{id}', function ($id) {
     $books = Books::query()->findOrFail($id);
 
-    return Inertia('EditBooks', ['data' => $books]);
+    return Inertia::render('EditBooks', ['data' => $books]);
 });
 
 /*
@@ -67,7 +67,7 @@ Route::get('person/add', function () {
 Route::get('person/edit/{id}', function ($id) {
     $person = Person::query()->findOrFail($id);
 
-    return Inertia('EditPerson', ['data' => $person]);
+    return Inertia::render('EditPerson', ['data' => $person]);
 });
 
 // Route API backend untuk handling data dengan database
