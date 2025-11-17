@@ -14,7 +14,7 @@ declare module 'vite/client' {
 }
 
 declare module '@inertiajs/core' {
-    interface PageProps extends InertiaPageProps, AppPageProps {}
+    interface PageProps extends InertiaPageProps, AppPageProps { }
 }
 
 declare module 'vue' {
@@ -57,6 +57,23 @@ export interface ResponseApiBooks {
     total: number;
 }
 
+
+export interface ResponseApiPerson {
+    current_page: number;
+    data: Persons[];
+    first_page_url: string;
+    from: number;
+    last_page: number;
+    last_page_url: string;
+    links: Link[];
+    next_page_url: string;
+    path: string;
+    per_page: number;
+    prev_page_url: any;
+    to: number;
+    total: number;
+}
+
 export interface Student {
     id: number;
     nama: string;
@@ -76,6 +93,16 @@ export interface Books {
     description: string;
     created_at: string;
     updated_at: string;
+}
+
+export interface Persons {
+    id: number
+    name: string
+    nik: string
+    email: string
+    no_hp: string
+    created_at: string
+    updated_at: string
 }
 
 export interface Link {

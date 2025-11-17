@@ -101,6 +101,7 @@ class BooksController extends Controller
     public function destroy(Books $books, $id)
     {
         $books->destroy($id);
+        $books->delete();
         return response()->json([
             'message' => 'Book deleted successfully'
         ], 200);

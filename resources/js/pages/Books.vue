@@ -129,30 +129,20 @@ watch(
 </script>
 
 <template>
+
     <Head title="student-page"></Head>
 
     <AppLayout :breadcrumbs="breadCrump">
         <div class="flex justify-between">
-            <div>
-                <div class="relative m-5 w-full max-w-sm items-center">
-                    <Input
-                        id="search"
-                        v-model="search"
-                        type="text"
-                        placeholder="Search by name..."
-                        class="pl-10"
-                    />
-                    <span
-                        class="absolute inset-y-0 start-0 flex items-center justify-center px-2"
-                    >
-                        <Search class="size-6 text-muted-foreground" />
-                    </span>
-                </div>
+            <div class="relative m-5 w-full max-w-sm items-center ">
+                <Input id="search" v-model="search" type="text" placeholder="Search by name..."
+                    class="pl-10 sm:w-full" />
+                <span class="absolute inset-y-0 start-0 flex items-center justify-center px-2">
+                    <Search class="size-6 text-muted-foreground" />
+                </span>
             </div>
 
-            <button
-                class="m-5 rounded bg-blue-500 px-2 py-1 text-white hover:bg-blue-600"
-            >
+            <button class="m-5 rounded bg-blue-500 px-2 py-1 text-white hover:bg-blue-600">
                 <a href="/books/add">Tambah data</a>
             </button>
         </div>
@@ -190,11 +180,7 @@ watch(
                     </TableRow>
                 </template>
 
-                <TableRow
-                    v-else
-                    v-for="(value, index) in data.data"
-                    :key="value.id"
-                >
+                <TableRow v-else v-for="(value, index) in data.data" :key="value.id">
                     <TableCell>{{ (data.from || 0) + index }}</TableCell>
                     <!-- <TableCell class="font-medium">{{ value.id }}</TableCell> -->
                     <TableCell class="font-medium">{{ value.title }}</TableCell>
@@ -206,14 +192,11 @@ watch(
                     <TableCell>{{ formatDate(value.updated_at) }}</TableCell>
                     <TableCell class="flex gap-2">
                         <button
-                            class="rounded-sm bg-blue-500 px-2 py-1 text-white active:bg-blue-400"
-                        >
+                            class="rounded-sm bg-blue-500 px-2 py-1 text-white active:bg-blue-400 hover:bg-blue-600 transition-colors">
                             <a :href="formatLinkEdit(value.id)">Edit</a>
                         </button>
-                        <button
-                            @click="handleDelete(value.id)"
-                            class="cursor-pointer rounded-sm bg-red-500 px-2 py-1 text-white active:bg-red-400"
-                        >
+                        <button @click="handleDelete(value.id)"
+                            class="cursor-pointer rounded-sm bg-red-500 px-2 py-1 text-white active:bg-red-400 hover:bg-red-600 transition-colors">
                             hapus
                         </button>
                     </TableCell>
@@ -221,47 +204,33 @@ watch(
             </TableBody>
         </Table>
 
-        <Pagination
-            v-slot="{ page: slotPage }"
-            :items-per-page="perPage"
-            :total="data.total"
-            :default-page="data.current_page"
-        >
+        <Pagination v-slot="{ page: slotPage }" :items-per-page="perPage" :total="data.total"
+            :default-page="data.current_page">
             <PaginationContent v-slot="{ items }">
-                <PaginationPrevious
-                    @click="
-                        () => {
-                            if (data.prev_page_url)
-                                page = data.current_page - 1;
-                        }
-                    "
-                />
+                <PaginationPrevious @click="
+                    () => {
+                        if (data.prev_page_url)
+                            page = data.current_page - 1;
+                    }
+                " />
 
                 <template v-if="data.current_page === 20">
-                    <PaginationItem
-                        :value="data.last_page"
-                        :is-active="data.last_page === slotPage"
-                        @click="
-                            () => {
-                                page = 1;
-                            }
-                        "
-                    >
+                    <PaginationItem :value="data.last_page" :is-active="data.last_page === slotPage" @click="
+                        () => {
+                            page = 1;
+                        }
+                    ">
                         {{ 1 }}
                     </PaginationItem>
                 </template>
 
                 <template v-for="(item, index) in items" :key="index">
-                    <PaginationItem
-                        v-if="item.type === 'page'"
-                        :value="item.value"
-                        :is-active="item.value === slotPage"
+                    <PaginationItem v-if="item.type === 'page'" :value="item.value" :is-active="item.value === slotPage"
                         @click="
                             () => {
                                 page = item.value;
                             }
-                        "
-                    >
+                        ">
                         {{ item.value }}
                     </PaginationItem>
                 </template>
@@ -271,27 +240,21 @@ watch(
                 </template>
 
                 <template v-if="data.current_page < data.last_page">
-                    <PaginationItem
-                        :value="data.last_page"
-                        :is-active="data.last_page === slotPage"
-                        @click="
-                            () => {
-                                page = data.last_page;
-                            }
-                        "
-                    >
+                    <PaginationItem :value="data.last_page" :is-active="data.last_page === slotPage" @click="
+                        () => {
+                            page = data.last_page;
+                        }
+                    ">
                         {{ data.last_page }}
                     </PaginationItem>
                 </template>
 
-                <PaginationNext
-                    @click="
-                        () => {
-                            if (data.next_page_url)
-                                page = data.current_page + 1;
-                        }
-                    "
-                />
+                <PaginationNext @click="
+                    () => {
+                        if (data.next_page_url)
+                            page = data.current_page + 1;
+                    }
+                " />
             </PaginationContent>
         </Pagination>
     </AppLayout>

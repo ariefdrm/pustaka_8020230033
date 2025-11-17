@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Person;
-use App\Http\Requests\StorePersonRequest;
-use App\Http\Requests\UpdatePersonRequest;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PersonController extends Controller
 {
@@ -13,7 +13,29 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $query = Person::query();
+
+        // Support search by either 'title' (frontend)  (database/legacy)
+        $searchTerm = request()->input('name', request()->input('name', ''));
+        if (!empty($searchTerm)) {
+            // Apply the WHERE LIKE clause and return paginated results
+            $query->where('name', 'like', '%' . $searchTerm . '%');
+
+            // Keep ordering consistent
+            $query->orderBy('id', 'desc');
+
+            $students = $query->paginate(10)->appends(request()->query());
+            return response()->json($students);
+        }
+
+        // Apply sorting (latest by created_at, then ascending by id)
+        $query->orderBy('id', "desc");
+
+        // Get the paginated results and append the query parameters
+        $persons = $query->paginate(10)->appends(request()->query());
+
+        // Return the JSON response
+        return response()->json($persons);
     }
 
     /**
@@ -27,9 +49,23 @@ class PersonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonRequest $request)
+    public function store(Request $request)
     {
         //
+        $validate = $request->validate([
+            'name' => 'required|string|max:255',
+            'nik' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:255',
+        ]);
+
+        $person = Person::query();
+        $person->create($validate);
+
+
+        return response()->json([
+            'message' => 'Person created successfully'
+        ], 201);
     }
 
     /**
@@ -38,12 +74,14 @@ class PersonController extends Controller
     public function show(Person $person)
     {
         //
+
+        return Inertia::render('AddPerson');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Person $person)
+    public function edit(Request $request, $id)
     {
         //
     }
@@ -51,9 +89,24 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePersonRequest $request, Person $person)
+    public function update(Request $request, $id)
     {
         //
+        $validate = $request->validate([
+            'name' => 'required|string|max:255',
+            'nik' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:255',
+        ]);
+
+        $person = Person::query();
+
+        $person->where('id', $id)->update($validate);
+
+        return response()->json([
+            'message' => 'Person updated successfully',
+            'data' => $person
+        ], 202);
     }
 
     /**
@@ -62,5 +115,9 @@ class PersonController extends Controller
     public function destroy(Person $person)
     {
         //
+        $person->delete();
+        return response()->json([
+            'message' => 'Person deleted successfully'
+        ], 200);
     }
 }

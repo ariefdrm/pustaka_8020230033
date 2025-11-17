@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestController;
 use App\Models\Books;
+use App\Models\Person;
 use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -58,10 +60,22 @@ Route::get('books/edit/{id}', function ($id) {
 Route::get('person', function () {
     return Inertia::render('Person');
 })->middleware(['auth', 'verified'])->name('person');
+Route::get('person/add', function () {
+    return Inertia::render('AddPerson');
+})->middleware(['auth', 'verified'])->name('person.add');
+
+Route::get('person/edit/{id}', function ($id) {
+    $person = Person::query()->findOrFail($id);
+
+    return Inertia('EditPerson', ['data' => $person]);
+});
 
 // Route API backend untuk handling data dengan database
 Route::resource('api/students', StudentController::class);
 Route::resource('api/books', BooksController::class);
+Route::resource('api/persons', PersonController::class);
+
+
 Route::resource('page2', TestController::class);
 Route::resource('page3', Controller::class);
 
