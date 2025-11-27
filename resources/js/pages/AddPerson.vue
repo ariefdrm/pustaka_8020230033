@@ -36,13 +36,13 @@ function onSubmit() {
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
         <!-- Modal Container -->
         <div
-            class="w-full max-w-md rounded-lg border border-gray-200 bg-white p-6 shadow-xl sm:max-w-lg md:max-w-2xl dark:border-gray-700 dark:bg-gray-900">
+            class="w-full max-w-md rounded-lg border border-gray-200 bg-white p-6 shadow-xl sm:max-w-lg md:max-w-2xl dark:border-gray-700 dark:bg-black">
             <!-- Header -->
             <div class="mb-6 flex items-center justify-between border-b border-gray-200 pb-3 dark:border-gray-700">
                 <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
                     Tambah Data Person
                 </h1>
-                <a href="/student"
+                <a href="/person"
                     class="text-xl font-semibold text-gray-400 transition hover:text-gray-700 dark:hover:text-gray-300">
                     x
                 </a>
@@ -53,25 +53,25 @@ function onSubmit() {
                 <div>
                     <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nama</label>
                     <input id="nama" type="text" v-model="state.name" placeholder="Nama..."
-                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
+                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-black dark:text-gray-100" />
                 </div>
 
                 <div>
                     <label for="nim" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nik</label>
                     <input id="nama" type="text" v-model="state.nik" placeholder="e.g. 9876"
-                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
+                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-black dark:text-gray-100" />
                 </div>
 
                 <div>
                     <label for="no_hp" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                     <input id="no_hp" type="text" v-model="state.email" placeholder="e.g. testing@mail.com"
-                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
+                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-black dark:text-gray-100" />
                 </div>
 
                 <div>
                     <label for="alamat" class="block text-sm font-medium text-gray-700 dark:text-gray-300">No Hp</label>
                     <input id="publisher" type="text" v-model="state.no_hp" placeholder="e.g. 0966-7777-7328"
-                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
+                        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-black dark:text-gray-100" />
                 </div>
 
                 <div class="flex justify-end pt-2">

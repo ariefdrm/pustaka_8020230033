@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class PersonController extends Controller
 {
@@ -24,8 +23,8 @@ class PersonController extends Controller
             // Keep ordering consistent
             $query->orderBy('id', 'desc');
 
-            $students = $query->paginate(10)->appends(request()->query());
-            return response()->json($students);
+            $persons = $query->paginate(10)->appends(request()->query());
+            return response()->json($persons);
         }
 
         // Apply sorting (latest by created_at, then ascending by id)
@@ -74,8 +73,6 @@ class PersonController extends Controller
     public function show(Person $person)
     {
         //
-
-        return Inertia::render('AddPerson');
     }
 
     /**

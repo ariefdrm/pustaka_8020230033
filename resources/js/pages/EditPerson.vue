@@ -50,9 +50,9 @@ async function onSubmit() {
                 </div>
 
                 <button
-                    class="max-w-fit rounded-md bg-slate-900 px-2 py-1 text-sm text-white active:bg-slate-600 dark:bg-white dark:text-black"
+                    class="max-w-fit self-end rounded-md bg-slate-900 px-3 py-2 text-sm text-white active:bg-slate-600 dark:bg-white dark:text-black cursor-pointer"
                     type="submit">
-                    Submit
+                    Save Changes
                 </button>
             </form>
         </div>

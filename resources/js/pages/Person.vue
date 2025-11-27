@@ -21,6 +21,7 @@ import api from '@/lib/axios';
 import { person } from '@/routes';
 import { BreadcrumbItem } from '@/types';
 import { ResponseApiPerson } from '@/types/globals';
+import { Search } from 'lucide-vue-next';
 import { onMounted, ref, watch } from 'vue';
 
 const breadCrump: BreadcrumbItem[] = [
